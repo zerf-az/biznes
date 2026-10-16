@@ -1,0 +1,54 @@
+{
+ "hekaye": {
+  "in": 1.48,
+  "out": 7.09
+ },
+ "treyler": {
+  "in": 3.55,
+  "out": 8.75
+ },
+ "ad-gunu": {
+  "in": 1.82,
+  "out": 6.6
+ },
+ "qezet": {
+  "in": 1.4,
+  "out": 7.01
+ },
+ "kitab": {
+  "in": 1.51,
+  "out": 6.51
+ },
+ "qebz": {
+  "in": 1.26,
+  "out": 6.86
+ },
+ "bilet": {
+  "in": 1.88,
+  "out": 6.72
+ },
+ "sertifikat": {
+  "in": 1.46,
+  "out": 7.06
+ },
+ "kaset": {
+  "in": 2,
+  "out": 7.2
+ },
+ "metro": {
+  "in": 2.96,
+  "out": 8.56
+ },
+ "tablo": {
+  "in": 1.14,
+  "out": 6.74
+ },
+ "dordyarpaq": {
+  "in": 0.85,
+  "out": 5.72
+ },
+ "siqnal-kagiz": {
+  "in": 10.14,
+  "out": 14.94
+ }
+}
