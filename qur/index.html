@@ -523,30 +523,83 @@ code{
   var K = [90, 201, 153, 114, 102, 194, 183, 109, 195, 182, 104, 195, 188, 114, 194, 183, 50, 48, 50, 54];
   var RX = /(<script id="zerf-y" type="application\/octet-stream"[^>]*>)([\s\S]*?)(<\/script>)/;
   function bytesToB64(u){ var s = "", C = 0x8000; for (var i = 0; i < u.length; i += C) s += String.fromCharCode.apply(null, u.subarray(i, i + C)); return btoa(s); }
+  /* Nümunə möhürdən əvvəl sıxılıb (data-z, deflate). Açanda açırıq,
+     bağlayanda yenidən sıxırıq: müştərinin faylı da yüngül olur. */
+  function inflate(d){
+    var p = 2, bb = 0, bn = 0, o = new Uint8Array(d.length * 3), n = 0, i, last;
+    function bits(c){ while (bn < c){ bb |= d[p++] << bn; bn += 8; } var v = bb & ((1 << c) - 1); bb >>>= c; bn -= c; return v; }
+    function tab(L){ var c = new Uint16Array(16), f = new Uint16Array(16), s = new Uint16Array(L.length), j;
+      for (j = 0; j < L.length; j++) c[L[j]]++; c[0] = 0;
+      for (j = 1; j < 16; j++) f[j] = f[j - 1] + c[j - 1];
+      for (j = 0; j < L.length; j++) if (L[j]) s[f[L[j]]++] = j;
+      return [c, s]; }
+    function dec(t){ var code = 0, first = 0, idx = 0, l, c;
+      for (l = 1; l < 16; l++){ code |= bits(1); c = t[0][l]; if (code - c < first) return t[1][idx + code - first]; idx += c; first = (first + c) << 1; code <<= 1; }
+      throw 0; }
+    function put(b){ if (n >= o.length){ var t = new Uint8Array(o.length * 2); t.set(o); o = t; } o[n++] = b; }
+    var LB = [3,4,5,6,7,8,9,10,11,13,15,17,19,23,27,31,35,43,51,59,67,83,99,115,131,163,195,227,258],
+        LE = [0,0,0,0,0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,0],
+        DB = [1,2,3,4,5,7,9,13,17,25,33,49,65,97,129,193,257,385,513,769,1025,1537,2049,3073,4097,6145,8193,12289,16385,24577],
+        DE = [0,0,0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13],
+        OR = [16,17,18,0,8,7,9,6,10,5,11,4,12,3,13,2,14,1,15];
+    do {
+      last = bits(1); var tp = bits(2), lt, dt, L;
+      if (tp === 0){ bb = bn = 0; var len = d[p] | d[p + 1] << 8; p += 4; while (len--) put(d[p++]); continue; }
+      if (tp === 1){ L = new Uint8Array(318); for (i = 0; i < 318; i++) L[i] = i < 144 ? 8 : i < 256 ? 9 : i < 280 ? 7 : i < 288 ? 8 : 5; lt = tab(L.subarray(0, 288)); dt = tab(L.subarray(288)); }
+      else {
+        var hl = bits(5) + 257, hd = bits(5) + 1, hc = bits(4) + 4, cl = new Uint8Array(19), ct;
+        for (i = 0; i < hc; i++) cl[OR[i]] = bits(3);
+        ct = tab(cl); L = new Uint8Array(hl + hd);
+        for (i = 0; i < hl + hd;){ var s = dec(ct), r, v;
+          if (s < 16){ L[i++] = s; continue; }
+          if (s === 16){ v = L[i - 1]; r = 3 + bits(2); } else if (s === 17){ v = 0; r = 3 + bits(3); } else { v = 0; r = 11 + bits(7); }
+          while (r--) L[i++] = v; }
+        lt = tab(L.subarray(0, hl)); dt = tab(L.subarray(hl));
+      }
+      for (;;){ var sy = dec(lt);
+        if (sy < 256){ put(sy); continue; }
+        if (sy === 256) break;
+        sy -= 257; var ln = LB[sy] + bits(LE[sy]), ds = dec(dt), di = DB[ds] + bits(DE[ds]);
+        while (ln--) put(o[n - di]); }
+    } while (!last);
+    return o.subarray(0, n);
+  }
+  function axin(u, S){ return new Response(new Response(u).body.pipeThrough(new S("deflate"))).arrayBuffer().then(function(b){ return new Uint8Array(b); }); }
+  function unz(u){
+    if (!window.DecompressionStream) return Promise.resolve(inflate(u));
+    return axin(u, DecompressionStream).catch(function(){ return inflate(u); });
+  }
+  function sixla(u){ return window.CompressionStream ? axin(u, CompressionStream).catch(function(){ return null; }) : Promise.resolve(null); }
   function ac(shell){
-    var m = shell.match(RX); if (!m) return shell;
+    var m = shell.match(RX); if (!m) return Promise.resolve(shell);
     var b = atob(m[2].replace(/\s+/g, "")), u = new Uint8Array(b.length);
     for (var i = 0; i < b.length; i++) u[i] = b.charCodeAt(i) ^ K[i % K.length];
-    return new TextDecoder("utf-8").decode(u);
+    return (/data-z=/.test(m[1]) ? unz(u) : Promise.resolve(u)).then(function(r){ return new TextDecoder("utf-8").decode(r); });
   }
   function wrap(t){ return t.replace(/.{160}/g, "$&\n"); }
   function put(shell, payload, attrs){
-    return shell.replace(RX, function(_, a, x, c){ return a.replace(">", (attrs || "") + ">") + "\n" + payload + "\n" + c; });
+    return shell.replace(RX, function(_, a, x, c){ return a.replace(/\s+data-(z|iv)="[^"]*"/g, "").replace(">", (attrs || "") + ">") + "\n" + payload + "\n" + c; });
   }
-  /* WhatsApp üçün fayl: XOR ilə bağlı, TEMIZ */
-  function bagla(shell, html){
-    var u = new TextEncoder().encode(html);
-    for (var i = 0; i < u.length; i++) u[i] ^= K[i % K.length];
-    return put(shell, wrap(bytesToB64(u))).replace("TEMIZ = false", "TEMIZ = true");
+  function xor(u){ for (var i = 0; i < u.length; i++) u[i] ^= K[i % K.length]; return u; }
+  /* WhatsApp üçün fayl: sıxılmış, XOR ilə bağlı, TEMIZ */
+  function bagla(shell, html, cb){
+    var raw = new TextEncoder().encode(html);
+    sixla(raw).then(function(c){
+      cb(put(shell, wrap(bytesToB64(xor(c || raw))), c ? ' data-z="1"' : "").replace("TEMIZ = false", "TEMIZ = true"));
+    });
+  }
+  /* Önizləmə: sıxmadan, dərhal (pəncərə toxunuşla eyni anda açılmalıdır) */
+  function baglaTez(shell, html){
+    return put(shell, wrap(bytesToB64(xor(new TextEncoder().encode(html))))).replace("TEMIZ = false", "TEMIZ = true");
   }
   function b64url(buf){ return bytesToB64(new Uint8Array(buf)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, ""); }
   /* Sayt üçün şifrəli səhifə: AES-GCM, açar yalnız linkdə */
   function sifrele(shell, html, cb){
-    var key = crypto.getRandomValues(new Uint8Array(16)), iv = crypto.getRandomValues(new Uint8Array(12));
-    crypto.subtle.importKey("raw", key, "AES-GCM", false, ["encrypt"])
-      .then(function(k){ return crypto.subtle.encrypt({ name: "AES-GCM", iv: iv }, k, new TextEncoder().encode(html)); })
+    var key = crypto.getRandomValues(new Uint8Array(16)), iv = crypto.getRandomValues(new Uint8Array(12)), raw = new TextEncoder().encode(html), zz = false;
+    sixla(raw).then(function(c){ zz = !!c; return crypto.subtle.importKey("raw", key, "AES-GCM", false, ["encrypt"])
+      .then(function(k){ return crypto.subtle.encrypt({ name: "AES-GCM", iv: iv }, k, c || raw); }); })
       .then(function(ct){
-        var out = put(shell, wrap(bytesToB64(new Uint8Array(ct))), ' data-iv="' + b64url(iv) + '"')
+        var out = put(shell, wrap(bytesToB64(new Uint8Array(ct))), ' data-iv="' + b64url(iv) + '"' + (zz ? ' data-z="1"' : ""))
           .replace("TEMIZ = false", "TEMIZ = true").replace("SIFRE = false", "SIFRE = true");
         cb(out, b64url(key));
       });
@@ -558,7 +611,7 @@ code{
     if (cache[sel]) { cb(cache[sel].plain, cache[sel].shell); return; }
     fetch("../numune/" + (T[sel].src || sel) + "/index.html")
       .then(function(r){ return r.text(); })
-      .then(function(t){ cache[sel] = { shell: t, plain: ac(t) }; cb(cache[sel].plain, t); })
+      .then(function(t){ return ac(t).then(function(pl){ cache[sel] = { shell: t, plain: pl }; cb(pl, t); }); })
       .catch(function(){ alert("Faylı oxumaq alınmadı. Səhifəni sayt ünvanından aç (fayl kimi yox)."); });
   }
   function fileName(){
@@ -570,20 +623,20 @@ code{
   }
 
   $("dl").addEventListener("click", function(){
-    load(function(src, shell){
-      var blob = new Blob([bagla(shell, bake(src))], { type:"text/html;charset=utf-8" });
+    load(function(src, shell){ bagla(shell, bake(src), function(file){
+      var blob = new Blob([file], { type:"text/html;charset=utf-8" });
       var a = document.createElement("a");
       a.href = URL.createObjectURL(blob); a.download = fileName();
       document.body.appendChild(a); a.click();
       setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 4000);
       var b = $("dl"); b.textContent = "Yükləndi ✓"; b.classList.add("done");
       setTimeout(function(){ b.textContent = "Faylı yüklə"; b.classList.remove("done"); }, 2200);
-    });
+    }); });
   });
 
   $("prev").addEventListener("click", function(){
     load(function(src, shell){
-      var blob = new Blob([bagla(shell, bake(src))], { type:"text/html;charset=utf-8" });
+      var blob = new Blob([baglaTez(shell, bake(src))], { type:"text/html;charset=utf-8" });
       window.open(URL.createObjectURL(blob), "_blank", "noopener");
     });
   });
