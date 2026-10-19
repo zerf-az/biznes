@@ -242,7 +242,7 @@ code{
     <div class="field">
       <label for="mus">Музыка <i>· mp3, до 4 МБ</i></label>
       <input id="mus" type="file" accept="audio/*">
-      <p class="hint" id="musInfo">Не обязательно. Без файла играет тихий аккорд.</p>
+      <p class="hint" id="musInfo">Не обязательно. Без файла играет музыка открытки (у каждой своя; другую — в поле «Музыка» выше). Свой mp3 — только с правом на использование (Pixabay); известные песни не ставить.</p>
     </div>
   </div>
 </div>
@@ -336,6 +336,8 @@ code{
     var s = document.createElement("span"); s.textContent = k;
     b.appendChild(t); b.appendChild(s);
     b.addEventListener("click", function(){
+      /* musiqi açıqcaya bağlıdır: başqa açıqcaya keçəndə öz musiqisi çalsın */
+      if (k !== sel) delete vals.trek;
       sel = k;
       Array.prototype.forEach.call(tiles.children, function(x, i){
         x.classList.toggle("on", keys[i] === sel);
