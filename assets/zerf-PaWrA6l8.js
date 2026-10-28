@@ -1,4 +1,4 @@
-import{M as Nc}from"./index-DQA9bvuI.js";/**
+import{M as Nc}from"./index-BL2LmWUJ.js";/**
  * @license
  * Copyright 2010-2024 Three.js Authors
  * SPDX-License-Identifier: MIT
