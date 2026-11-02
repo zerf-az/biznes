@@ -11,7 +11,7 @@ a{color:var(--gold)}
 .top a.logo{font:600 30px 'Cormorant Garamond',serif;color:var(--ink);text-decoration:none}
 h1{font:600 clamp(36px,9vw,58px)/1.02 'Cormorant Garamond',serif;margin:36px 0 14px;text-wrap:balance}
 .lead{color:var(--mut);max-width:60ch}
-.ad{position:sticky;top:0;z-index:5;background:linear-gradient(var(--bg) 70%,rgba(18,10,12,0));padding:18px 0 14px;margin-top:18px}
+.ad{position:sticky;top:0;z-index:5;background:linear-gradient(var(--bg) 88%,rgba(18,10,12,0));padding:18px 0 20px;margin-top:18px}
 .ad label{display:block;font:700 12px Manrope;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
 .ad input{width:100%;font:16px Manrope;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:14px 20px;outline:none}
 .ad input:focus{border-color:var(--gold)}
@@ -33,6 +33,9 @@ button:active{transform:scale(.97)}
 .toast.on{opacity:1}
 @media (hover:hover){.send:hover{background:#fff}}
 body,body *{font-variant-numeric:lining-nums!important}
+.cvid{position:relative;display:block;margin:18px 0 4px;width:min(100%,280px);aspect-ratio:480/620;border-radius:18px;overflow:hidden;background:#000;box-shadow:0 18px 50px rgba(0,0,0,.45)}
+.cvid video{width:100%;height:100%;object-fit:cover;display:block}
+.cvid span{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);white-space:nowrap;padding:8px 14px;border-radius:999px;background:rgba(0,0,0,.55);color:#fff;font:600 13px Manrope}
 .bax{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font:600 14px Manrope;color:var(--gold);text-decoration:none}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .chips a{padding:10px 15px;border:1px solid var(--line);background:var(--card);border-radius:999px;color:var(--ink);text-decoration:none;font-size:15px}
@@ -47,7 +50,10 @@ body,body *{font-variant-numeric:lining-nums!important}
 <div class="ad"><label for="ad">Kimə göndərirsən?</label><input id="ad" name="ad" maxlength="26" autocomplete="off" value="Xəyal"></div>
 <ol><li><p>Xəyal, yeni yaşın sağlıq, sevinc və bol uğur gətirsin.</p><div class="b"><button class="send" type="button">Zərfdə göndər 💌</button><button class="copy" type="button">Kopyala</button></div></li><li><p>Əziz Xəyal, ad günün mübarək! Səni çox istəyirik.</p><div class="b"><button class="send" type="button">Zərfdə göndər 💌</button><button class="copy" type="button">Kopyala</button></div></li><li><p>Xəyal, ad günün mübarək! Qoy bu il bütün arzuların çin olsun.</p><div class="b"><button class="send" type="button">Zərfdə göndər 💌</button><button class="copy" type="button">Kopyala</button></div></li><li><p>Ad günün mübarək, Xəyal! Bu il səni yalnız yaxşı xəbərlər tapsın.</p><div class="b"><button class="send" type="button">Zərfdə göndər 💌</button><button class="copy" type="button">Kopyala</button></div></li><li><p>Xəyal, sən olan yerdə hər gün bir az bayramdır.</p><div class="b"><button class="send" type="button">Zərfdə göndər 💌</button><button class="copy" type="button">Kopyala</button></div></li><li><p>Bu gün dünya bir az daha gözəldir, çünki Xəyal doğulub.</p><div class="b"><button class="send" type="button">Zərfdə göndər 💌</button><button class="copy" type="button">Kopyala</button></div></li><li><p>Xəyal, bu gecə bütün ulduzlar sənin üçün yanır.</p><div class="b"><button class="send" type="button">Zərfdə göndər 💌</button><button class="copy" type="button">Kopyala</button></div></li><li><p>Ad günün mübarək, Xəyal! Yaxşı ki, varsan.</p><div class="b"><button class="send" type="button">Zərfdə göndər 💌</button><button class="copy" type="button">Kopyala</button></div></li></ol><div class="cta"><h2>Daha böyüyünü istəyirsən?</h2>
 <p>Sizin şəkillər, sənin məktubun və səsin, musiqi və 3D sonluq — onun adı ilə açılan canlı açıqca. Bir günə hazırlayırıq.</p>
-<a class="btn" href="/">Nümunələrə bax · 5 ₼-dan</a></div><div class="diger"><h2>Başqa adlar</h2><a href="/tebrik/ad/yaqub/">Yaqub</a> <a href="/tebrik/ad/yasar/">Yaşar</a> <a href="/tebrik/ad/yegane/">Yeganə</a> <a href="/tebrik/ad/yusif/">Yusif</a> <a href="/tebrik/ad/zahid/">Zahid</a> <a href="/tebrik/ad/zaur/">Zaur</a> <a href="/tebrik/ad/zefer/">Zəfər</a> <a href="/tebrik/ad/zehra/">Zəhra</a> <a href="/tebrik/adlar/">Bütün adlar →</a></div>
+<a class="cvid" href="/?ref=tebrik-video"><video muted loop playsinline preload="none" poster="/img/ad-gunu.jpg" data-src="/vid/ad-gunu.mp4"></video><span>▶ Belə görünür</span></a>
+<p style="margin-top:12px;color:#9FE3B5">✓ İlk 5 sifariş: əvvəl bax, bəyənsən ödə.</p>
+<a class="btn" href="/?ref=tebrik">Nümunələrə bax · 5 ₼-dan</a></div>
+<script>(()=>{const v=document.currentScript.previousElementSibling.querySelector('video');if(!v||!('IntersectionObserver'in window))return;new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){if(!v.src)v.src=v.dataset.src;v.play().catch(()=>{})}else v.pause()}),{threshold:.3}).observe(v)})()</script><div class="diger"><h2>Başqa adlar</h2><a href="/tebrik/ad/yaqub/">Yaqub</a> <a href="/tebrik/ad/yasar/">Yaşar</a> <a href="/tebrik/ad/yegane/">Yeganə</a> <a href="/tebrik/ad/yusif/">Yusif</a> <a href="/tebrik/ad/zahid/">Zahid</a> <a href="/tebrik/ad/zaur/">Zaur</a> <a href="/tebrik/ad/zefer/">Zəfər</a> <a href="/tebrik/ad/zehra/">Zəhra</a> <a href="/tebrik/adlar/">Bütün adlar →</a></div>
 <div class="toast" role="status"></div></div><script>
 const $=s=>document.querySelector(s), inp=$('#ad');
 try{inp.value=localStorage.getItem('zerf.tebrik.ad')||''}catch(e){}
