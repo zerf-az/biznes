@@ -32,6 +32,14 @@ button:active{transform:scale(.97)}
 .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--ink);color:#2A0910;font:600 14px Manrope;padding:10px 16px;border-radius:999px;opacity:0;transition:opacity .3s;pointer-events:none}
 .toast.on{opacity:1}
 @media (hover:hover){.send:hover{background:#fff}}
+body,body *{font-variant-numeric:lining-nums!important}
+.bax{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font:600 14px Manrope;color:var(--gold);text-decoration:none}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chips a{padding:10px 15px;border:1px solid var(--line);background:var(--card);border-radius:999px;color:var(--ink);text-decoration:none;font-size:15px}
+.chips a.on{border-color:var(--gold);color:var(--gold)}
+.tools{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+.tools a{display:block;padding:14px;border-radius:16px;background:radial-gradient(120% 120% at 80% 0%,#3A1420,#1D1215);color:var(--ink);text-decoration:none;font-size:15px;line-height:1.3}
+.tools b{display:block;font:600 21px 'Cormorant Garamond',serif;color:var(--gold);margin-bottom:2px}
 </style><script data-goatcounter="https://zerf.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></head><body data-n="ad"><div class="w">
 <div class="top"><a class="logo" href="/">Zərf</a><a href="/tebrik/">Bütün təbriklər</a></div><h1>Ad günün mübarək, Ömər!</h1>
 <p class="lead">Ömər üçün 8 hazır təbrik. Birini seç, «Zərfdə göndər»ə bas — mətn Ömər adı ilə açılan zərfdə WhatsApp-a gedir. Pulsuz.</p>
@@ -47,12 +55,19 @@ inp.addEventListener('input',()=>{try{localStorage.setItem('zerf.tebrik.ad',inp.
 const toast=t=>{const x=$('.toast');x.textContent=t;x.classList.add('on');setTimeout(()=>x.classList.remove('on'),1800)};
 const kodla=o=>{const b=new TextEncoder().encode(JSON.stringify(o));let t='';b.forEach(x=>t+=String.fromCharCode(x));return btoa(t).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')};
 const say=w=>{try{window.goatcounter&&goatcounter.count({path:w,title:w,event:true})}catch(e){}};
+const ilk=(document.querySelector('li p')||{}).textContent||'';
+const bax=document.querySelector('.bax');
+const yenile=()=>{const a=inp.value.trim().slice(0,26);
+  document.querySelectorAll('li .send').forEach(b=>b.textContent=a?a+' üçün göndər 💌':'Zərfdə göndər 💌');
+  if(bax)bax.href='https://zerf.store/m/#z='+kodla({a:a||'Sənin adın',n:document.body.dataset.n||'ad',l:'az',s:ilk.trim().slice(0,120)});};
+inp.addEventListener('input',yenile); yenile();
+if(bax)bax.addEventListener('click',()=>say('tebrik: önizləmə'));
 document.querySelectorAll('li').forEach(li=>{
   const s=li.querySelector('p').textContent.trim();
   li.querySelector('.copy').onclick=async()=>{try{await navigator.clipboard.writeText(s);toast('Kopyalandı')}catch(e){toast('Mətni seçib kopyala')};say('tebrik: kopyala')};
   li.querySelector('.send').onclick=()=>{
     const a=inp.value.trim().slice(0,26);
-    if(!a){inp.focus();toast('Əvvəl onun adını yaz');return}
+    if(!a){inp.scrollIntoView({block:'center'});inp.focus();toast('Əvvəl onun adını yaz');return}
     const link='https://zerf.store/m/#z='+kodla({a,n:document.body.dataset.n||'ad',l:'az',s:s.slice(0,120)});
     say('tebrik: zərfdə göndər');
     location.href='https://wa.me/?text='+encodeURIComponent(a+', sənə bir zərf var 💌 Aç: '+link);
