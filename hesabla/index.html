@@ -53,12 +53,12 @@ body,body *{font-variant-numeric:lining-nums!important}
   <ol class="grid">
     <li><b id="saat"></b><span>saat</span></li>
     <li><b id="urek"></b><span>ürək döyüntüsü (təxmini)</span></li>
-    <li><b id="hefte"></b><span>doğulduğun gün</span></li>
-    <li><b id="qalan"></b><span>növbəti ad gününə qalıb</span></li>
+    <li><b id="hefte"></b><span id="hefteL">doğulduğun gün</span></li>
+    <li><b id="qalan"></b><span id="qalanL">növbəti ad gününə qalıb</span></li>
   </ol>
   <p class="soon" id="mil"></p>
-  <div class="b" style="margin-top:18px"><button id="share" class="send" type="button">Dostuna göndər 💌</button><button id="copy" class="copy" type="button">Nəticəni kopyala</button></div>
-  <div class="cta"><h2>Bu rəqəmləri ona hədiyyə et</h2>
+  <div class="b" style="margin-top:18px"><button id="ona" class="send" type="button" hidden>Ona zərfdə göndər 💌</button><button id="share" class="send" type="button">Dostuna göndər</button><button id="copy" class="copy" type="button">Nəticəni kopyala</button></div>
+  <div class="cta"><h2 id="ctaH">Bu rəqəmləri ona hədiyyə et</h2>
   <p>«Rəqəmlər» zərfi: onun yaşadığı günlər canlı sayğacla, doğulduğu gecənin ulduzları və sənin məktubun — onun adı ilə açılır.</p>
   <a class="btn" href="/">Nümunəyə bax · 5 ₼-dan</a></div>
 </div>
@@ -76,7 +76,7 @@ body,body *{font-variant-numeric:lining-nums!important}
 </style>
 <script>
 const $=s=>document.querySelector(s), AY=['yanvar','fevral','mart','aprel','may','iyun','iyul','avqust','sentyabr','oktyabr','noyabr','dekabr'], HG=['bazar','bazar ertəsi','çərşənbə axşamı','çərşənbə','cümə axşamı','cümə','şənbə'];
-const fmt=n=>Math.floor(n).toLocaleString('en-US').replace(/,/g,' ');
+const fmt=n=>Math.floor(n).toLocaleString('en-US').replace(/,/g,'\u00A0');
 /* azərbaycanca sıra şəkilçisi: 8 383-cü, 9 000-ci, 8 400-cü */
 const sira=n=>{n=Math.floor(n);const v=(x)=>x;const B=['','ci','ci','cü','cü','ci','cı','ci','ci','cu'],O=['','cu','ci','cu','cı','ci','cı','ci','ci','cı'];
  if(n%10)return B[n%10]; if(n%100)return O[(n%100)/10]; if(n%1000)return 'cü'; return 'ci'};
@@ -90,11 +90,14 @@ function hesabla(dv,a){
   const ad=a?a:null;
   $('#gunL').textContent=ad?`gündür ${ad} bu dünyadadır`:'gündür bu dünyadasan';
   $('#hefte').textContent=HG[d.getDay()];
+  $('#hefteL').textContent=ad?'doğulduğu gün':'doğulduğun gün'; $('#qalanL').textContent=ad?'növbəti ad gününə qalıb':'növbəti ad gününə qalıb';
+  $('#ona').hidden=!ad; $('#share').className=ad?'copy':'send'; $('#share').textContent=ad?'Dostlara göndər':'Dostuna göndər 💌';
   const now=new Date(); let n=new Date(now.getFullYear(),d.getMonth(),d.getDate()); if(n<new Date(now.getFullYear(),now.getMonth(),now.getDate()))n.setFullYear(n.getFullYear()+1);
   const q=Math.round((n-new Date(now.getFullYear(),now.getMonth(),now.getDate()))/864e5);
   $('#qalan').textContent=q===0?'bu gündür! 🎂':q+' gün';
   const gun=Math.floor((now-d)/864e5), next=Math.ceil((gun+1)/1000)*1000, k=next-gun, md=new Date(+d+next*864e5);
   $('#mil').textContent=`${ord(next)} gün: ${md.getDate()} ${AY[md.getMonth()]} ${md.getFullYear()} (${k} gün sonra). Bu günü qeyd etməyə dəyər.`;
+  $('#ctaH').textContent=(ad&&k<=150)?`${md.getDate()} ${AY[md.getMonth()]} — ${ord(next)} gün. Onun telefonunda qeyd et`:'Bu rəqəmləri ona hədiyyə et';
   clearInterval(tick);
   const upd=()=>{const ms=Date.now()-d;$('#gun').textContent=fmt(ms/864e5);$('#saat').textContent=fmt(ms/36e5);$('#urek').textContent=fmt(ms/6e4*70)};
   upd(); tick=setInterval(upd,1000);
@@ -102,6 +105,10 @@ function hesabla(dv,a){
 }
 $('#go').onclick=()=>hesabla($('#d').value,$('#a').value.trim().slice(0,26));
 const metn=()=>{const g=ord(Math.floor((Date.now()-new Date(cur.dv+'T00:00:00'))/864e5));return cur.a?`${cur.a} bu gün ${g} gününü yaşayır 🎂`:`Mən bu gün ${g} günümü yaşayıram 🎂`};
+const kodla=o=>{const b=new TextEncoder().encode(JSON.stringify(o));let t='';b.forEach(x=>t+=String.fromCharCode(x));return btoa(t).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')};
+$('#ona').onclick=()=>{if(!cur||!cur.a)return;say('hesabla: zərf');const g=ord(Math.floor((Date.now()-new Date(cur.dv+'T00:00:00'))/864e5));
+  const z='https://zerf.store/m/#z='+kodla({a:cur.a,n:'ad',l:'az',s:`Bu gün sənin ${g} günündür. Hər biri üçün şadam ki, varsan.`.slice(0,120)});
+  location.href='https://wa.me/?text='+encodeURIComponent(cur.a+', sənə bir zərf var 💌 Aç: '+z)};
 const link=()=>'https://zerf.store/hesabla/#d='+cur.dv+(cur.a?'&a='+encodeURIComponent(cur.a):'');
 $('#share').onclick=()=>{if(!cur)return;say('hesabla: göndər');location.href='https://wa.me/?text='+encodeURIComponent(metn()+'. Sən neçə gündür yaşayırsan? '+link())};
 $('#copy').onclick=async()=>{if(!cur)return;try{await navigator.clipboard.writeText(metn()+' '+link());toast('Kopyalandı')}catch(e){toast('Kopyalamaq olmadı')}};
