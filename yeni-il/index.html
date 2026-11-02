@@ -1,0 +1,115 @@
+<!doctype html><html lang="az"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Yeni ilə neçə gün qaldı? Canlı geri sayım | Zərf</title><meta name="description" content="Yeni ilə neçə gün, saat və dəqiqə qaldı — Bakı vaxtı ilə canlı geri sayım. Hazır yeni il təbrikləri və hədiyyə fikirləri."><link rel="canonical" href="https://zerf.store/yeni-il/">
+<meta property="og:title" content="Yeni ilə neçə gün qaldı? Canlı geri sayım | Zərf"><meta property="og:description" content="Yeni ilə neçə gün, saat və dəqiqə qaldı — Bakı vaxtı ilə canlı geri sayım. Hazır yeni il təbrikləri və hədiyyə fikirləri."><meta property="og:url" content="https://zerf.store/yeni-il/"><meta property="og:image" content="https://zerf.store/img/og.jpg">
+<meta name="theme-color" content="#120A0C"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,600&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet"><style>
+:root{--bg:#120A0C;--card:#1D1215;--ink:#F5E8DA;--mut:#C9B6A8;--gold:#E5C58D;--wine:#B2364E;--line:rgba(245,232,218,.12);color-scheme:dark}
+*{box-sizing:border-box;margin:0}
+body{font-variant-numeric:lining-nums;background:var(--bg);color:var(--ink);font:400 17px/1.6 Manrope,system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
+a{color:var(--gold)}
+.w{max-width:720px;margin:0 auto;padding:28px max(18px,env(safe-area-inset-left)) 80px}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:15px}
+.top a.logo{font:600 30px 'Cormorant Garamond',serif;color:var(--ink);text-decoration:none}
+h1{font:600 clamp(36px,9vw,58px)/1.02 'Cormorant Garamond',serif;margin:36px 0 14px;text-wrap:balance}
+.lead{color:var(--mut);max-width:60ch}
+.ad{position:sticky;top:0;z-index:5;background:linear-gradient(var(--bg) 70%,rgba(18,10,12,0));padding:18px 0 14px;margin-top:18px}
+.ad label{display:block;font:700 12px Manrope;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.ad input{width:100%;font:16px Manrope;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:14px 20px;outline:none}
+.ad input:focus{border-color:var(--gold)}
+ol{list-style:none;padding:0;display:grid;gap:14px;margin-top:8px}
+li{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px 20px 16px}
+li p{font:500 22px/1.38 'Cormorant Garamond',serif}
+.b{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+button{font:600 14px Manrope;border:0;border-radius:999px;padding:11px 16px;cursor:pointer;touch-action:manipulation}
+.send{background:var(--ink);color:#2A0910}
+.copy{background:transparent;color:var(--mut);border:1px solid var(--line)}
+button:active{transform:scale(.97)}
+.cta{margin-top:40px;border-radius:24px;padding:26px;background:radial-gradient(120% 120% at 80% 0%,#3A1420,#1D1215)}
+.cta h2{font:600 32px/1.1 'Cormorant Garamond',serif}
+.cta p{color:var(--mut);margin-top:8px}
+.cta a.btn{display:inline-block;margin-top:16px;background:var(--gold);color:#2A0910;font:700 15px Manrope;padding:13px 20px;border-radius:999px;text-decoration:none}
+.diger{margin-top:36px}.diger h2{font:600 26px 'Cormorant Garamond',serif;margin-bottom:10px}
+.diger a{display:inline-block;margin:0 14px 10px 0}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--ink);color:#2A0910;font:600 14px Manrope;padding:10px 16px;border-radius:999px;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.on{opacity:1}
+@media (hover:hover){.send:hover{background:#fff}}
+</style><script data-goatcounter="https://zerf.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></head><body data-n="bayram"><div class="w">
+<div class="top"><a class="logo" href="/">Zərf</a><a href="/tebrik/">Bütün təbriklər</a></div><h1 id="h">Yeni ilə neçə gün qaldı?</h1>
+<p class="lead" id="ld">Bakı vaxtı ilə canlı geri sayım.</p>
+<div class="say" aria-live="off">
+  <div><b id="g">–</b><span>gün</span></div><div><b id="s">–</b><span>saat</span></div>
+  <div><b id="d">–</b><span>dəqiqə</span></div><div><b id="sn">–</b><span>saniyə</span></div>
+</div>
+<p class="soon" id="txt"></p>
+<div class="b" style="margin-top:16px"><button id="pay" class="send" type="button">Dostuna göndər ⏳</button></div>
+
+<div class="cta"><h2>Düz 00:00-da onun telefonunda zərf açılsın</h2>
+<p>Hamı «Yeni ilin mübarək» yazanda, sən ona onun adı ilə açılan canlı açıqca göndər: sizin şəkillər, sənin məktubun, musiqi və gözəl 3D sonluq. Linki istədiyin dəqiqədə göndərirsən.</p>
+<p style="margin-top:8px;color:#9FE3B5">✓ İlk 5 sifariş: əvvəl bax, bəyənsən ödə.</p>
+<a class="btn" href="/">Nümunələrə bax · 5 ₼-dan</a></div>
+
+<h2 class="h2">Pulsuz: yeni il təbriki onun adı ilə</h2>
+<p class="lead">Mətni seç, onun adını yaz — mətn onun adı ilə açılan kiçik zərfdə gedir.</p>
+<div class="ad"><label for="ad">Kimə göndərirsən?</label><input id="ad" name="ad" maxlength="26" autocomplete="off" autocapitalize="words" placeholder="Onun adını yaz"></div>
+<ol><li><p>Yeni ilin mübarək! Qoy bu il səni yalnız sevinc və yaxşı insanlar tapsın.</p><div class="b"><button class="send" type="button">Zərfdə göndər 💌</button><button class="copy" type="button">Kopyala</button></div></li><li><p>Köhnə il bütün dərdləri aparsın, yeni il bütün arzuları gətirsin.</p><div class="b"><button class="send" type="button">Zərfdə göndər 💌</button><button class="copy" type="button">Kopyala</button></div></li><li><p>Saat 00:00-da ilk düşündüyüm adam sənsən. Yeni ilin mübarək!</p><div class="b"><button class="send" type="button">Zərfdə göndər 💌</button><button class="copy" type="button">Kopyala</button></div></li><li><p>Qoy yeni il evinə sağlıq, süfrənə bərəkət, ürəyinə rahatlıq gətirsin.</p><div class="b"><button class="send" type="button">Zərfdə göndər 💌</button><button class="copy" type="button">Kopyala</button></div></li><li><p>Yeni ildə bir az daha çox gülüş, bir az daha az narahatlıq arzulayıram.</p><div class="b"><button class="send" type="button">Zərfdə göndər 💌</button><button class="copy" type="button">Kopyala</button></div></li><li><p>Bu il bir-birimizi daha çox görək. Yeni ilin mübarək!</p><div class="b"><button class="send" type="button">Zərfdə göndər 💌</button><button class="copy" type="button">Kopyala</button></div></li><li><p>Bu il də ilk arzum sənsən. Yeni ilin mübarək, əzizim.</p><div class="b"><button class="send" type="button">Zərfdə göndər 💌</button><button class="copy" type="button">Kopyala</button></div></li><li><p>Saat on ikidə gözlərimi yumub yalnız səni arzuladım.</p><div class="b"><button class="send" type="button">Zərfdə göndər 💌</button><button class="copy" type="button">Kopyala</button></div></li></ol>
+<p style="margin-top:14px;font-size:18px"><a href="/tebrik/yeni-il/">Bütün yeni il təbrikləri →</a> &nbsp; <a href="/tebrik/yeni-il-sevgiliye/">Sevgiliyə →</a></p>
+
+<h2 class="h2">Yeni il hədiyyəsi: 7 fikir</h2>
+<div class="fikir">
+<p><b>Birlikdə şəkillərdən albom.</b> Bir ilin ən yaxşı 20 şəkli — çap et, ya da telefonda bir hekayə kimi topla.</p>
+<p><b>Əl ilə yazılmış məktub.</b> Bir səhifə kifayətdir. İllər sonra ən çox saxlanan hədiyyə budur.</p>
+<p><b>Gələn il üçün «bilet».</b> Birlikdə gedəcəyiniz yer: konsert, səfər, şam yeməyi. Tarixi qoy, hədiyyə gözləmə olsun.</p>
+<p><b>Onun sevdiyi şeyin daha yaxşısı.</b> Hər gün işlətdiyi kubok, şərf, qələm — sadəcə daha keyfiyyətlisi.</p>
+<p><b>Səsli mesaj.</b> 30 saniyə: onun bu il sənin üçün nə etdiyini söylə. Gözlənilməz və çox təsirlidir.</p>
+<p><b>«Bizim ilimiz» siyahısı.</b> Bu il birlikdə etdiyiniz 12 şey, hər ay üçün biri.</p>
+<p><b>Canlı açıqca (Zərf).</b> Yuxarıdakıların hamısı bir linkdə: şəkillər, məktub, səs və musiqi, onun adı ilə açılır. <a href="/">Nümunəyə bax →</a></p>
+</div>
+<div class="toast" role="status"></div>
+<style>
+.say{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:28px}
+.say div{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 6px;text-align:center}
+.say b{display:block;font:600 clamp(40px,12vw,76px)/1 'Cormorant Garamond',serif;color:var(--gold);font-variant-numeric:lining-nums tabular-nums}
+.say span{font-size:13px;color:var(--mut)}
+.soon{margin-top:16px;color:var(--mut);font-size:18px}
+.h2{font:600 34px/1.1 'Cormorant Garamond',serif;margin:46px 0 8px}
+.fikir p{font-size:17px;margin-top:12px;padding:14px 16px;background:var(--card);border:1px solid var(--line);border-radius:14px}
+</style>
+<script>
+
+const $=s=>document.querySelector(s), inp=$('#ad');
+try{inp.value=localStorage.getItem('zerf.tebrik.ad')||''}catch(e){}
+inp.addEventListener('input',()=>{try{localStorage.setItem('zerf.tebrik.ad',inp.value)}catch(e){}});
+const toast=t=>{const x=$('.toast');x.textContent=t;x.classList.add('on');setTimeout(()=>x.classList.remove('on'),1800)};
+const kodla=o=>{const b=new TextEncoder().encode(JSON.stringify(o));let t='';b.forEach(x=>t+=String.fromCharCode(x));return btoa(t).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')};
+const say=w=>{try{window.goatcounter&&goatcounter.count({path:w,title:w,event:true})}catch(e){}};
+document.querySelectorAll('li').forEach(li=>{
+  const s=li.querySelector('p').textContent.trim();
+  li.querySelector('.copy').onclick=async()=>{try{await navigator.clipboard.writeText(s);toast('Kopyalandı')}catch(e){toast('Mətni seçib kopyala')};say('tebrik: kopyala')};
+  li.querySelector('.send').onclick=()=>{
+    const a=inp.value.trim().slice(0,26);
+    if(!a){inp.focus();toast('Əvvəl onun adını yaz');return}
+    const link='https://zerf.store/m/#z='+kodla({a,n:document.body.dataset.n||'ad',l:'az',s:s.slice(0,120)});
+    say('tebrik: zərfdə göndər');
+    location.href='https://wa.me/?text='+encodeURIComponent(a+', sənə bir zərf var 💌 Aç: '+link);
+  };
+});
+
+(()=>{
+const q=s=>document.querySelector(s);
+const sira=n=>{const B=['','ci','ci','cü','cü','ci','cı','ci','ci','cu'],O=['','cu','ci','cu','cı','ci','cı','ci','ci','cı'];
+ if(n%10)return B[n%10]; if(n%100)return O[(n%100)/10]; if(n%1000)return 'cü'; return 'ci'};
+/* Bakı = UTC+4, yay vaxtı yoxdur */
+const bakiIl=()=>new Date(Date.now()+4*36e5).getUTCFullYear();
+let Y=bakiIl()+1, T=Date.UTC(Y,0,1)-4*36e5;
+const p2=n=>String(n).padStart(2,'0');
+function upd(){
+  let ms=T-Date.now();
+  if(ms<=0 && ms>-864e5){q('#h').textContent=`${Y}-${sira(Y)} il gəldi! 🎆`;q('#txt').textContent='Yeni ilin mübarək!';['#g','#s','#d','#sn'].forEach(x=>q(x).textContent='0');return}
+  if(ms<=-864e5){Y=bakiIl()+1;T=Date.UTC(Y,0,1)-4*36e5;ms=T-Date.now()}
+  const g=Math.floor(ms/864e5), s=Math.floor(ms/36e5)%24, d=Math.floor(ms/6e4)%60, sn=Math.floor(ms/1e3)%60;
+  q('#g').textContent=g; q('#s').textContent=p2(s); q('#d').textContent=p2(d); q('#sn').textContent=p2(sn);
+  q('#txt').textContent=`${Y}-${sira(Y)} ilə ${g} gün ${s} saat qaldı.`;
+}
+upd(); setInterval(upd,1000);
+q('#pay').onclick=()=>{const g=q('#g').textContent;say('yeni-il: göndər');location.href='https://wa.me/?text='+encodeURIComponent(`Yeni ilə ${g} gün qaldı ⏳ Bax: https://zerf.store/yeni-il/`)};
+})();
+</script></div></body></html>
