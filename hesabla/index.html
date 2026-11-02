@@ -1,0 +1,102 @@
+<!doctype html><html lang="az"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Neçə gündür yaşayırsan? Günlərini hesabla | Zərf</title><meta name="description" content="Doğum tarixini yaz: neçə gündür, neçə saatdır yaşadığını, ürəyinin neçə dəfə döyündüyünü və növbəti ad gününə neçə gün qaldığını öyrən. Pulsuz."><link rel="canonical" href="https://zerf.store/hesabla/">
+<meta property="og:title" content="Neçə gündür yaşayırsan? Günlərini hesabla | Zərf"><meta property="og:description" content="Doğum tarixini yaz: neçə gündür, neçə saatdır yaşadığını, ürəyinin neçə dəfə döyündüyünü və növbəti ad gününə neçə gün qaldığını öyrən. Pulsuz."><meta property="og:url" content="https://zerf.store/hesabla/"><meta property="og:image" content="https://zerf.store/img/og.jpg">
+<meta name="theme-color" content="#120A0C"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,600&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet"><style>
+:root{--bg:#120A0C;--card:#1D1215;--ink:#F5E8DA;--mut:#C9B6A8;--gold:#E5C58D;--wine:#B2364E;--line:rgba(245,232,218,.12);color-scheme:dark}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.6 Manrope,system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
+a{color:var(--gold)}
+.w{max-width:720px;margin:0 auto;padding:28px max(18px,env(safe-area-inset-left)) 80px}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:15px}
+.top a.logo{font:600 30px 'Cormorant Garamond',serif;color:var(--ink);text-decoration:none}
+h1{font:600 clamp(36px,9vw,58px)/1.02 'Cormorant Garamond',serif;margin:36px 0 14px;text-wrap:balance}
+.lead{color:var(--mut);max-width:60ch}
+.ad{position:sticky;top:0;z-index:5;background:linear-gradient(var(--bg) 70%,rgba(18,10,12,0));padding:18px 0 14px;margin-top:18px}
+.ad label{display:block;font:700 12px Manrope;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.ad input{width:100%;font:16px Manrope;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:14px 20px;outline:none}
+.ad input:focus{border-color:var(--gold)}
+ol{list-style:none;padding:0;display:grid;gap:14px;margin-top:8px}
+li{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px 20px 16px}
+li p{font:500 22px/1.38 'Cormorant Garamond',serif}
+.b{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+button{font:600 14px Manrope;border:0;border-radius:999px;padding:11px 16px;cursor:pointer;touch-action:manipulation}
+.send{background:var(--ink);color:#2A0910}
+.copy{background:transparent;color:var(--mut);border:1px solid var(--line)}
+button:active{transform:scale(.97)}
+.cta{margin-top:40px;border-radius:24px;padding:26px;background:radial-gradient(120% 120% at 80% 0%,#3A1420,#1D1215)}
+.cta h2{font:600 32px/1.1 'Cormorant Garamond',serif}
+.cta p{color:var(--mut);margin-top:8px}
+.cta a.btn{display:inline-block;margin-top:16px;background:var(--gold);color:#2A0910;font:700 15px Manrope;padding:13px 20px;border-radius:999px;text-decoration:none}
+.diger{margin-top:36px}.diger h2{font:600 26px 'Cormorant Garamond',serif;margin-bottom:10px}
+.diger a{display:inline-block;margin:0 14px 10px 0}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--ink);color:#2A0910;font:600 14px Manrope;padding:10px 16px;border-radius:999px;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.on{opacity:1}
+@media (hover:hover){.send:hover{background:#fff}}
+</style><script data-goatcounter="https://zerf.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></head><body><div class="w">
+<div class="top"><a class="logo" href="/">Zərf</a><a href="/tebrik/">Bütün təbriklər</a></div><h1 id="h">Neçə gündür yaşayırsan?</h1>
+<p class="lead" id="ld">Doğum tarixini yaz — yaşadığın günləri, saatları və ürəyinin neçə dəfə döyündüyünü hesablayaq. Dostun üçün də hesabla və ona göndər.</p>
+<div class="form">
+  <label for="d">Doğum tarixi</label><input id="d" type="date" min="1920-01-01">
+  <label for="a">Kimin? (istəsən)</label><input id="a" maxlength="26" autocomplete="off" placeholder="Məs. Nigar">
+  <button id="go" class="send" type="button">Hesabla</button>
+</div>
+<div id="res" hidden>
+  <p class="big"><span id="gun">0</span><small id="gunL">gündür bu dünyadasan</small></p>
+  <ol class="grid">
+    <li><b id="saat"></b><span>saat</span></li>
+    <li><b id="urek"></b><span>ürək döyüntüsü (təxmini)</span></li>
+    <li><b id="hefte"></b><span>doğulduğun gün</span></li>
+    <li><b id="qalan"></b><span>növbəti ad gününə qalıb</span></li>
+  </ol>
+  <p class="soon" id="mil"></p>
+  <div class="b" style="margin-top:18px"><button id="share" class="send" type="button">Dostuna göndər 💌</button><button id="copy" class="copy" type="button">Nəticəni kopyala</button></div>
+  <div class="cta"><h2>Bu rəqəmləri ona hədiyyə et</h2>
+  <p>«Rəqəmlər» zərfi: onun yaşadığı günlər canlı sayğacla, doğulduğu gecənin ulduzları və sənin məktubun — onun adı ilə açılır.</p>
+  <a class="btn" href="/">Nümunəyə bax · 5 ₼-dan</a></div>
+</div>
+<div class="toast" role="status"></div>
+<style>
+.form{display:grid;gap:8px;margin-top:26px;max-width:420px}
+.form label{font:700 12px Manrope;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:8px}
+.form input{font:16px Manrope;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 16px;color-scheme:dark}
+.form .send{margin-top:12px;padding:15px}
+.big{margin-top:36px;font:600 clamp(64px,19vw,120px)/1 'Cormorant Garamond',serif;color:var(--gold);font-variant-numeric:lining-nums}
+.big small{display:block;font:400 22px Manrope;color:var(--mut);margin-top:8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+.grid li{padding:16px}.grid b{display:block;font:600 26px 'Cormorant Garamond',serif;font-variant-numeric:lining-nums}.grid span{font-size:14px;color:var(--mut)}
+.soon{margin-top:16px;color:var(--mut)}
+</style>
+<script>
+const $=s=>document.querySelector(s), AY=['yanvar','fevral','mart','aprel','may','iyun','iyul','avqust','sentyabr','oktyabr','noyabr','dekabr'], HG=['bazar','bazar ertəsi','çərşənbə axşamı','çərşənbə','cümə axşamı','cümə','şənbə'];
+const fmt=n=>Math.floor(n).toLocaleString('en-US').replace(/,/g,' ');
+/* azərbaycanca sıra şəkilçisi: 8 383-cü, 9 000-ci, 8 400-cü */
+const sira=n=>{n=Math.floor(n);const v=(x)=>x;const B=['','ci','ci','cü','cü','ci','cı','ci','ci','cu'],O=['','cu','ci','cu','cı','ci','cı','ci','ci','cı'];
+ if(n%10)return B[n%10]; if(n%100)return O[(n%100)/10]; if(n%1000)return 'cü'; return 'ci'};
+const ord=n=>fmt(n)+'-'+sira(n);
+const say=w=>{try{window.goatcounter&&goatcounter.count({path:w,title:w,event:true})}catch(e){}};
+const toast=t=>{const x=$('.toast');x.textContent=t;x.classList.add('on');setTimeout(()=>x.classList.remove('on'),1800)};
+let tick=null, cur=null;
+function hesabla(dv,a){
+  const d=new Date(dv+'T00:00:00'); if(isNaN(d)||d>new Date()){toast('Tarixi düz yaz');return}
+  cur={dv,a}; $('#res').hidden=false;
+  const ad=a?a:null;
+  $('#gunL').textContent=ad?`gündür ${ad} bu dünyadadır`:'gündür bu dünyadasan';
+  $('#hefte').textContent=HG[d.getDay()];
+  const now=new Date(); let n=new Date(now.getFullYear(),d.getMonth(),d.getDate()); if(n<new Date(now.getFullYear(),now.getMonth(),now.getDate()))n.setFullYear(n.getFullYear()+1);
+  const q=Math.round((n-new Date(now.getFullYear(),now.getMonth(),now.getDate()))/864e5);
+  $('#qalan').textContent=q===0?'bu gündür! 🎂':q+' gün';
+  const gun=Math.floor((now-d)/864e5), next=Math.ceil((gun+1)/1000)*1000, k=next-gun, md=new Date(+d+next*864e5);
+  $('#mil').textContent=`${ord(next)} gün: ${md.getDate()} ${AY[md.getMonth()]} ${md.getFullYear()} (${k} gün sonra). Bu günü qeyd etməyə dəyər.`;
+  clearInterval(tick);
+  const upd=()=>{const ms=Date.now()-d;$('#gun').textContent=fmt(ms/864e5);$('#saat').textContent=fmt(ms/36e5);$('#urek').textContent=fmt(ms/6e4*70)};
+  upd(); tick=setInterval(upd,1000);
+  say('hesabla: nəticə'); $('#res').scrollIntoView({behavior:'smooth',block:'start'});
+}
+$('#go').onclick=()=>hesabla($('#d').value,$('#a').value.trim().slice(0,26));
+const metn=()=>{const g=ord(Math.floor((Date.now()-new Date(cur.dv+'T00:00:00'))/864e5));return cur.a?`${cur.a} bu gün ${g} gününü yaşayır 🎂`:`Mən bu gün ${g} günümü yaşayıram 🎂`};
+const link=()=>'https://zerf.store/hesabla/#d='+cur.dv+(cur.a?'&a='+encodeURIComponent(cur.a):'');
+$('#share').onclick=()=>{if(!cur)return;say('hesabla: göndər');location.href='https://wa.me/?text='+encodeURIComponent(metn()+'. Sən neçə gündür yaşayırsan? '+link())};
+$('#copy').onclick=async()=>{if(!cur)return;try{await navigator.clipboard.writeText(metn()+' '+link());toast('Kopyalandı')}catch(e){toast('Kopyalamaq olmadı')}};
+const h=new URLSearchParams(location.hash.slice(1));
+if(h.get('d')){const a=(h.get('a')||'').slice(0,26);$('#d').value=h.get('d');$('#a').value=a;if(a){$('#h').textContent=`${a} neçə gündür yaşayır?`;}hesabla(h.get('d'),a)}
+</script></div></body></html>
