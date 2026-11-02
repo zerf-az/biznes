@@ -1,0 +1,95 @@
+<!doctype html><html lang="az"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sevgi testi: adlarınız nə qədər uyğundur? | Zərf</title><meta name="description" content="İki adı yaz və sevgi uyğunluğunu yoxla. Əyləncəli, pulsuz test — nəticəni ona onun adı ilə açılan zərfdə göndər."><link rel="canonical" href="https://zerf.store/sevgi-testi/">
+<meta property="og:title" content="Sevgi testi: adlarınız nə qədər uyğundur? | Zərf"><meta property="og:description" content="İki adı yaz və sevgi uyğunluğunu yoxla. Əyləncəli, pulsuz test — nəticəni ona onun adı ilə açılan zərfdə göndər."><meta property="og:url" content="https://zerf.store/sevgi-testi/"><meta property="og:image" content="https://zerf.store/img/og.jpg">
+<meta name="theme-color" content="#120A0C"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,600&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet"><style>
+:root{--bg:#120A0C;--card:#1D1215;--ink:#F5E8DA;--mut:#C9B6A8;--gold:#E5C58D;--wine:#B2364E;--line:rgba(245,232,218,.12);color-scheme:dark}
+*{box-sizing:border-box;margin:0}
+body{font-variant-numeric:lining-nums;background:var(--bg);color:var(--ink);font:400 17px/1.6 Manrope,system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
+a{color:var(--gold)}
+.w{max-width:720px;margin:0 auto;padding:28px max(18px,env(safe-area-inset-left)) 80px}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:15px}
+.top a.logo{font:600 30px 'Cormorant Garamond',serif;color:var(--ink);text-decoration:none}
+h1{font:600 clamp(36px,9vw,58px)/1.02 'Cormorant Garamond',serif;margin:36px 0 14px;text-wrap:balance}
+.lead{color:var(--mut);max-width:60ch}
+.ad{position:sticky;top:0;z-index:5;background:linear-gradient(var(--bg) 70%,rgba(18,10,12,0));padding:18px 0 14px;margin-top:18px}
+.ad label{display:block;font:700 12px Manrope;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.ad input{width:100%;font:16px Manrope;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:14px 20px;outline:none}
+.ad input:focus{border-color:var(--gold)}
+ol{list-style:none;padding:0;display:grid;gap:14px;margin-top:8px}
+li{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px 20px 16px}
+li p{font:500 22px/1.38 'Cormorant Garamond',serif}
+.b{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+button{font:600 14px Manrope;border:0;border-radius:999px;padding:11px 16px;cursor:pointer;touch-action:manipulation}
+.send{background:var(--ink);color:#2A0910}
+.copy{background:transparent;color:var(--mut);border:1px solid var(--line)}
+button:active{transform:scale(.97)}
+.cta{margin-top:40px;border-radius:24px;padding:26px;background:radial-gradient(120% 120% at 80% 0%,#3A1420,#1D1215)}
+.cta h2{font:600 32px/1.1 'Cormorant Garamond',serif}
+.cta p{color:var(--mut);margin-top:8px}
+.cta a.btn{display:inline-block;margin-top:16px;background:var(--gold);color:#2A0910;font:700 15px Manrope;padding:13px 20px;border-radius:999px;text-decoration:none}
+.diger{margin-top:36px}.diger h2{font:600 26px 'Cormorant Garamond',serif;margin-bottom:10px}
+.diger a{display:inline-block;margin:0 14px 10px 0}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--ink);color:#2A0910;font:600 14px Manrope;padding:10px 16px;border-radius:999px;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.on{opacity:1}
+@media (hover:hover){.send:hover{background:#fff}}
+</style><script data-goatcounter="https://zerf.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></head><body><div class="w">
+<div class="top"><a class="logo" href="/">Zərf</a><a href="/tebrik/">Bütün təbriklər</a></div><h1>Sevgi testi</h1>
+<p class="lead">İki adı yaz — adlarınız bir-birinə nə qədər uyğundur? Əyləncə üçündür, amma nəticəni ona göndərmək olar 😉</p>
+<div class="form">
+  <label for="a1">Sənin adın</label><input id="a1" maxlength="26" autocomplete="off" autocapitalize="words" placeholder="Məs. Elvin">
+  <label for="a2">Onun adı</label><input id="a2" maxlength="26" autocomplete="off" autocapitalize="words" placeholder="Məs. Aysel">
+  <button id="go" class="send" type="button">Yoxla ❤</button>
+</div>
+<div id="res" hidden>
+  <p class="ad2" id="adlar"></p>
+  <p class="big"><span id="faiz">0</span>%</p>
+  <div class="bar"><i id="bar"></i></div>
+  <p class="soz" id="soz"></p>
+  <div class="b" style="margin-top:18px"><button id="ona" class="send" type="button">Ona zərfdə göndər 💌</button><button id="dost" class="copy" type="button">Dostlara göndər</button></div>
+  <div class="cta"><h2>Ona əsl sürpriz et</h2>
+  <p>Onun adı ilə açılan canlı açıqca: sizin şəkillər, sənin məktubun, sevdiyiniz mahnı və 3D sonluq. Ad günü, ildönümü, ya da səbəbsiz.</p>
+  <p style="margin-top:8px;color:#9FE3B5">✓ İlk 5 sifariş: əvvəl bax, bəyənsən ödə.</p>
+  <a class="btn" href="/">Nümunələrə bax · 5 ₼-dan</a></div>
+</div>
+<p style="margin-top:34px;font-size:18px"><a href="/tebrik/sevgi-sozleri/">Sevgiliyə gözəl sözlər →</a> &nbsp; <a href="/tebrik/sevgiliye/">Sevgiliyə ad günü təbriki →</a></p>
+<p style="margin-top:14px;color:var(--mut);font-size:14px">Nəticə adların hərflərindən hesablanır və həmişə eyni çıxır. Bu, elmi test deyil — sadəcə əyləncədir.</p>
+<div class="toast" role="status"></div>
+<style>
+.form{display:grid;gap:8px;margin-top:26px;max-width:420px}
+.form label{font:700 12px Manrope;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:8px}
+.form input{font:16px Manrope;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 16px}
+.form .send{margin-top:12px;padding:15px}
+.ad2{margin-top:36px;font:600 italic 30px 'Cormorant Garamond',serif;color:var(--ink)}
+.big{margin-top:6px;font:600 clamp(80px,26vw,140px)/1 'Cormorant Garamond',serif;color:var(--gold);font-variant-numeric:lining-nums}
+.bar{height:10px;border-radius:9px;background:var(--card);overflow:hidden;margin-top:14px;max-width:420px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#B2364E,#E5C58D);transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+.soz{margin-top:16px;font-size:19px}
+</style>
+<script>
+const $=s=>document.querySelector(s);
+const toast=t=>{const x=$('.toast');x.textContent=t;x.classList.add('on');setTimeout(()=>x.classList.remove('on'),1800)};
+const kodla=o=>{const b=new TextEncoder().encode(JSON.stringify(o));let t='';b.forEach(x=>t+=String.fromCharCode(x));return btoa(t).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')};
+const say=w=>{try{window.goatcounter&&goatcounter.count({path:w,title:w,event:true})}catch(e){}};
+const nor=s=>s.trim().toLocaleLowerCase('az');
+function faiz(x,y){const k=[nor(x),nor(y)].sort().join('❤');let h=2166136261;for(const c of k){h^=c.codePointAt(0);h=Math.imul(h,16777619)}return 55+((h>>>0)%45)}
+const SOZ=[[90,'Bu, nadir uyğunluqdur. Ona bunu bildirməyin vaxtıdır 💞'],[80,'Çox güclü uyğunluq! Aranızda xüsusi bir şey var.'],[70,'Gözəl uyğunluq. Bir az diqqət, bir az sürpriz — və hər şey əla olacaq.'],[0,'Sevgi faizlə ölçülmür. Ən gözəl hekayələr belə başlayır 😉']];
+let cur=null;
+function goster(a,b){
+  if(!a||!b){toast('İki adı da yaz');return}
+  const f=faiz(a,b); cur={a,b,f};
+  $('#res').hidden=false; $('#adlar').textContent=`${a} + ${b}`;
+  $('#soz').textContent=SOZ.find(x=>f>=x[0])[1];
+  let i=0; const t=setInterval(()=>{i=Math.min(f,i+3);$('#faiz').textContent=i;if(i>=f)clearInterval(t)},28);
+  requestAnimationFrame(()=>$('#bar').style.width=f+'%');
+  say('sevgi-testi: nəticə'); $('#res').scrollIntoView({behavior:'smooth',block:'start'});
+  history.replaceState(null,'','#'+new URLSearchParams({a,b}));
+}
+$('#go').onclick=()=>goster($('#a1').value.trim().slice(0,26),$('#a2').value.trim().slice(0,26));
+$('#ona').onclick=()=>{if(!cur)return;say('sevgi-testi: zərf');
+  const link='https://zerf.store/m/#z='+kodla({a:cur.b,n:'sevgi',l:'az',s:`Sevgi testimiz ${cur.f}% çıxdı. Mən isə bilirəm ki, səni ondan da çox sevirəm.`.slice(0,120),k:cur.a});
+  location.href='https://wa.me/?text='+encodeURIComponent(cur.b+', sənə bir zərf var 💌 Aç: '+link)};
+$('#dost').onclick=()=>{if(!cur)return;say('sevgi-testi: paylaş');
+  location.href='https://wa.me/?text='+encodeURIComponent(`${cur.a} + ${cur.b} = ${cur.f}% ❤ Siz də yoxlayın: https://zerf.store/sevgi-testi/`)};
+const h=new URLSearchParams(location.hash.slice(1));
+if(h.get('a')&&h.get('b')){$('#a1').value=h.get('a').slice(0,26);$('#a2').value=h.get('b').slice(0,26);goster($('#a1').value,$('#a2').value)}
+</script></div></body></html>
