@@ -180,7 +180,7 @@ code{
 </div>
 <script>
 (function(){
-  var BLOB = {"salt": "Ddc2nhs6DgevLzLenohlsA==", "iv": "pNGxMpd6VOWFhA3Z", "ct": "0sZ6dQ6ZzMiwp0bsTIENeMF+kLLZx9J0FXeisZZzkmSykV22vN9SNLDay6QFEjkO+8lOot02b3/bdQsIgHrlkUp3AbzZD1fvNGWo1PqIgKgditRfLf+VJlwffBfPyfj5ZpvHN5j+O7BJvQTUJ0NOvD5f7tyCQ4cOJd+9Gg9Sny83qjvYNfYbrcrTGQgwcrrK01JhoHFi7N5u7BqD2ruWinrmk6/SQccAznf6ZHlU8BGQCKvoXHM9HvYkWzfHvp0l9a/T+Im7hb9m"};
+  var BLOB = {"salt": "iEpYRAA3cBZ4nDe1MQtHhg==", "iv": "Aoj/Vl/ekQ2HhlIe", "ct": "C20rfvFWI0R0OhNPMnksjBfvsdbgUu+Zq/fIu//HFl6y9o6klAAfkRJejYKt7MIulj5uoY/hXgr1I6ma1VlTvLZzOICCYHRXJ0m0GjySC3VUORFgfMm4JEF3uzCTmxRW0K9hFHTeCrS23ZZm/4jTuAKO3IXwuRq25aMBxyat5Is5nHOBmKnFba2IceUuIKd6wZVLVVpGtEYnQKrSzoyuosRHVl04lj3Dc/aVvf5mTAK6PnKjNeddKnitLjgd9R1B2fG4rhZ7e1aks/Hmm9C8x9+1c2go3+4LTmtA68/f"};
   var q = document.getElementById("qapi"), x = document.getElementById("qapiX");
   function b64(t){ var b = atob(t), u = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; }
   function ready(jwk){
@@ -190,8 +190,8 @@ code{
   if (!window.crypto || !crypto.subtle) { x.textContent = "Saytın ünvanından aç (https)."; return; }
   try {
     localStorage.removeItem("zerf.qur");
-    var saved = localStorage.getItem("zerf.acar");
-    if (saved) ready(JSON.parse(saved)).catch(function(){ localStorage.removeItem("zerf.acar"); });
+    var saved = localStorage.getItem("zerf.acar2");
+    if (saved) ready(JSON.parse(saved)).catch(function(){ localStorage.removeItem("zerf.acar2"); });
   } catch (e) {}
   document.getElementById("qapiF").addEventListener("submit", function(e){
     e.preventDefault();
@@ -202,12 +202,12 @@ code{
       .then(function(k){ return crypto.subtle.decrypt({ name: "AES-GCM", iv: b64(BLOB.iv) }, k, b64(BLOB.ct)); })
       .then(function(buf){
         var jwk = JSON.parse(new TextDecoder().decode(buf));
-        try { localStorage.setItem("zerf.acar", JSON.stringify(jwk)); } catch (e) {}
+        try { localStorage.setItem("zerf.acar2", JSON.stringify(jwk)); } catch (e) {}
         x.textContent = ""; return ready(jwk);
       })
       .catch(function(){ x.textContent = "Parol səhvdir."; });
   });
-  window.zerfKilidle = function(){ try { localStorage.removeItem("zerf.acar"); } catch (e) {} location.reload(); };
+  window.zerfKilidle = function(){ try { localStorage.removeItem("zerf.acar2"); } catch (e) {} location.reload(); };
 })();
 </script>
 <div class="wrap">
