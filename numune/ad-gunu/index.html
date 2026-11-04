@@ -5115,7 +5115,8 @@ EeieWjcJrUe0HmadbbdSUGGKpqNPu4X/JpuVGqVVaMPWPsYokux5V2P7sMCzWSFAguQFkai5TzWdst6X
     if (!kk || !window.crypto || !crypto.subtle) return bos();
     sil(true);
     function b64(t){ t = t.replace(/-/g, "+").replace(/_/g, "/"); while (t.length % 4) t += "="; var b = atob(t), u = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; }
-    crypto.subtle.importKey("raw", b64(kk), "AES-GCM", false, ["decrypt"])
+    var kb; try { kb = b64(kk); } catch (e) { return bos(); }
+    crypto.subtle.importKey("raw", kb, "AES-GCM", false, ["decrypt"])
       .then(function(k){ return crypto.subtle.decrypt({ name: "AES-GCM", iv: b64(y.getAttribute("data-iv")) }, k, b64(y.textContent.replace(/\s+/g, ""))); })
       .then(function(buf){
         function yaz2(u){
@@ -5134,7 +5135,8 @@ EeieWjcJrUe0HmadbbdSUGGKpqNPu4X/JpuVGqVVaMPWPsYokux5V2P7sMCzWSFAguQFkai5TzWdst6X
     var keys = Object.keys(M).filter(function(k){ return !IZLER.test(k); }).sort();
     var str = ID + "\n" + keys.map(function(k){ return k + "=" + M[k]; }).join("\n");
     var s = M.s.replace(/-/g, "+").replace(/_/g, "/"); while (s.length % 4) s += "=";
-    var b = atob(s), sig = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) sig[i] = b.charCodeAt(i);
+    var b; try { b = atob(s); } catch (e) { sil(); yaz(false); return; }
+    var sig = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) sig[i] = b.charCodeAt(i);
     crypto.subtle.importKey("jwk", PUB, { name: "ECDSA", namedCurve: "P-256" }, false, ["verify"])
       .then(function(k){ return crypto.subtle.verify({ name: "ECDSA", hash: "SHA-256" }, k, sig, new TextEncoder().encode(str)); })
       .then(function(ok){ if (!ok) sil(); yaz(ok); }, function(){ sil(); yaz(false); });
