@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://zerf.store/</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://zerf.store/</loc><xhtml:link rel="alternate" hreflang="az" href="https://zerf.store/"/><xhtml:link rel="alternate" hreflang="ru" href="https://zerf.store/ru/"/><xhtml:link rel="alternate" hreflang="en" href="https://zerf.store/en/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://zerf.store/"/></url>
+  <url><loc>https://zerf.store/ru/</loc><xhtml:link rel="alternate" hreflang="az" href="https://zerf.store/"/><xhtml:link rel="alternate" hreflang="ru" href="https://zerf.store/ru/"/><xhtml:link rel="alternate" hreflang="en" href="https://zerf.store/en/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://zerf.store/"/></url>
+  <url><loc>https://zerf.store/en/</loc><xhtml:link rel="alternate" hreflang="az" href="https://zerf.store/"/><xhtml:link rel="alternate" hreflang="ru" href="https://zerf.store/ru/"/><xhtml:link rel="alternate" hreflang="en" href="https://zerf.store/en/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://zerf.store/"/></url>
   <url><loc>https://zerf.store/tebrik/</loc></url>
   <url><loc>https://zerf.store/tebrik/sevgiliye/</loc></url>
   <url><loc>https://zerf.store/tebrik/anaya/</loc></url>
@@ -238,5 +240,5 @@
   <url><loc>https://zerf.store/hesabla/</loc></url>
   <url><loc>https://zerf.store/sevgi-testi/</loc></url>
   <url><loc>https://zerf.store/yeni-il/</loc></url>
-  <url><loc>https://zerf.store/sertler/</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://zerf.store/sertler/</loc></url>
 </urlset>
