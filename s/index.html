@@ -1,0 +1,22 @@
+<!doctype html><html lang="az"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow"><title>Sizə bir zərf var 💌</title>
+<meta property="og:title" content="Sizə bir zərf var 💌"><meta property="og:description" content="Aç, bax: bu zərf sizin üçündür.">
+<meta property="og:image" content="https://zerf.store/img/zerf-hediyye.jpg"><meta name="theme-color" content="#120A0C">
+<style>body{margin:0;background:#120A0C;color:#F5E8DA;font:16px system-ui;display:grid;place-items:center;min-height:100vh}a{color:#E5C58D}</style>
+<script>
+/* Qısa link (06.11): zerf.store/s/?t=<növ>&a=<ad> → uyğun zərf.
+   t: x — xəbər (pulsuz mini, «… komandası»), c — şirkət (mini, Yeni il), b — buket, k — tort, s — sertifikat */
+(function(){
+  var q=new URLSearchParams(location.search), t=q.get('t')||'x';
+  var a=(q.get('a')||'').replace(/\.(az|com|ru|net|org|store|io|me|tv|ws|info)\b/gi,'').replace(/[<>@]/g,'').trim().slice(0,26);
+  function kodla(o){var b=new TextEncoder().encode(JSON.stringify(o)),s='';b.forEach(function(x){s+=String.fromCharCode(x)});return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')}
+  function mini(ad,s){return 'https://zerf.store/m/#z='+kodla({a:ad.slice(0,26),n:'sagol',l:'az',s:s})}
+  var e=encodeURIComponent(a||'Dostum'), u;
+  if(t==='b')u='/numune/buket/#ad='+e;
+  else if(t==='k')u='/numune/ad-gunu/#ad='+e;
+  else if(t==='s')u='/numune/sertifikat/#ad='+e;
+  else if(t==='c')u=mini((a||'Sizin')+' komandası','Yeni iliniz mübarək! Belə zərfi hər işçinizə öz adı ilə göndərmək olar.');
+  else u=mini(a?(a+' komandası').slice(0,26):'Sizin üçün','Bu zərf sizin üçündür. Belə zərfi hər kəs pulsuz göndərə bilər.');
+  location.replace(u);
+})();
+</script></head><body><a href="/">Zərf →</a></body></html>
