@@ -57,7 +57,7 @@ body,body *{font-variant-numeric:lining-nums!important}
 <script>(()=>{const v=document.currentScript.previousElementSibling.querySelector('video');if(!v||!('IntersectionObserver'in window))return;new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){if(!v.src)v.src=v.dataset.src;v.play().catch(()=>{})}else v.pause()}),{threshold:.3}).observe(v)})()</script><div class="diger"><h2>Başqa adlar</h2><a href="/tebrik/ad/sebnem/">Şəbnəm</a> <a href="/tebrik/ad/sebuhi/">Səbuhi</a> <a href="/tebrik/ad/sefa/">Şəfa</a> <a href="/tebrik/ad/selale/">Şəlalə</a> <a href="/tebrik/ad/sema/">Səma</a> <a href="/tebrik/ad/senan/">Sənan</a> <a href="/tebrik/ad/serxan/">Sərxan</a> <a href="/tebrik/ad/sevda/">Sevda</a> <a href="/tebrik/adlar/">Bütün adlar →</a></div>
 <div class="toast" role="status"></div></div><script>
 const $=s=>document.querySelector(s), inp=$('#ad');
-try{inp.value=localStorage.getItem('zerf.tebrik.ad')||''}catch(e){}
+try{const v=localStorage.getItem('zerf.tebrik.ad');if(v&&!inp.value)inp.value=v}catch(e){}
 inp.addEventListener('input',()=>{try{localStorage.setItem('zerf.tebrik.ad',inp.value)}catch(e){}});
 const toast=t=>{const x=$('.toast');x.textContent=t;x.classList.add('on');setTimeout(()=>x.classList.remove('on'),1800)};
 const kodla=o=>{const b=new TextEncoder().encode(JSON.stringify(o));let t='';b.forEach(x=>t+=String.fromCharCode(x));return btoa(t).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')};

@@ -90,7 +90,7 @@ body,body *{font-variant-numeric:lining-nums!important}
 <script>
 
 const $=s=>document.querySelector(s), inp=$('#ad');
-try{inp.value=localStorage.getItem('zerf.tebrik.ad')||''}catch(e){}
+try{const v=localStorage.getItem('zerf.tebrik.ad');if(v&&!inp.value)inp.value=v}catch(e){}
 inp.addEventListener('input',()=>{try{localStorage.setItem('zerf.tebrik.ad',inp.value)}catch(e){}});
 const toast=t=>{const x=$('.toast');x.textContent=t;x.classList.add('on');setTimeout(()=>x.classList.remove('on'),1800)};
 const kodla=o=>{const b=new TextEncoder().encode(JSON.stringify(o));let t='';b.forEach(x=>t+=String.fromCharCode(x));return btoa(t).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')};

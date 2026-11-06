@@ -55,7 +55,7 @@ body,body *{font-variant-numeric:lining-nums!important}
 <script>(()=>{const v=document.currentScript.previousElementSibling.querySelector('video');if(!v||!('IntersectionObserver'in window))return;new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){if(!v.src)v.src=v.dataset.src;v.play().catch(()=>{})}else v.pause()}),{threshold:.3}).observe(v)})()</script><div class="diger"><h2>Hər gün üçün mesajlar</h2><a href="/tebrik/sabahin-xeyir/">Sabahın xeyir mesajları</a> <a href="/tebrik/darixdim/">Darıxdım mesajları</a> <a href="/tebrik/gecen-xeyre/">Gecən xeyrə mesajları</a> <a href="/tebrik/sevgi-sozleri/">Sevgiliyə gözəl sözlər</a> <a href="/tebrik/dosta-sozler/">Dosta gözəl sözlər</a> <a href="/tebrik/">Bütün təbriklər →</a></div>
 <div class="toast" role="status"></div></div><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Təşəkkür mesajları", "inLanguage": "az", "publisher": {"@type": "Organization", "name": "Zərf", "url": "https://zerf.store"}}</script><script>
 const $=s=>document.querySelector(s), inp=$('#ad');
-try{inp.value=localStorage.getItem('zerf.tebrik.ad')||''}catch(e){}
+try{const v=localStorage.getItem('zerf.tebrik.ad');if(v&&!inp.value)inp.value=v}catch(e){}
 inp.addEventListener('input',()=>{try{localStorage.setItem('zerf.tebrik.ad',inp.value)}catch(e){}});
 const toast=t=>{const x=$('.toast');x.textContent=t;x.classList.add('on');setTimeout(()=>x.classList.remove('on'),1800)};
 const kodla=o=>{const b=new TextEncoder().encode(JSON.stringify(o));let t='';b.forEach(x=>t+=String.fromCharCode(x));return btoa(t).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')};
