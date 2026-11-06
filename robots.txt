@@ -1,5 +1,6 @@
 User-agent: *
 Disallow: /qur/
 Disallow: /z/
+Disallow: /s/
 
 Sitemap: https://zerf.store/sitemap.xml
